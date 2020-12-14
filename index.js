@@ -25,21 +25,25 @@ bot.on('ready', () => {
 
 bot.on('message', msg => {
   if (msg.author.id != '788062078140153868') {
-    var params = {
-        botAlias: '$LATEST', /* required, has to be '$LATEST' */
-        botName: 'RoboVapeDawg', /* required, the name of you bot */
-        inputText: msg.content, /* required, your text */
-        userId: 'DiscordMessage', /* required, arbitrary identifier */
-      };
-      lexruntime.postText(params, function(err, data) {
-        if (err) console.log(err, err.stack); // an error occurred
-        else {
-          if ((data.message =='Sorry, can you please repeat that?') || (data.message =='Sorry, I could not understand. Goodbye.')) {
-            console.log(data.message);
-          } else {
-            msg.channel.send(data.message);   // successful response
-          };
-        };         
-      });
+    if (msg.content.includes('691025760907034756')) { 
+      msg.channel.send('<:titos:784483491911434320>');
+     } else {
+      var params = {
+          botAlias: '$LATEST', /* required, has to be '$LATEST' */
+          botName: 'RoboVapeDawg', /* required, the name of you bot */
+          inputText: msg.content, /* required, your text */
+          userId: 'DiscordMessage', /* required, arbitrary identifier */
+        };
+        lexruntime.postText(params, function(err, data) {
+          if (err) console.log(err, err.stack); // an error occurred
+          else {
+            if ((data.message =='Sorry, can you please repeat that?') || (data.message =='Sorry, I could not understand. Goodbye.')) {
+              console.log(data.message);
+            } else {
+              msg.channel.send(data.message);   // successful response
+            };
+          };         
+        });
+    };
   }
 });
